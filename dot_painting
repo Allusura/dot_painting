@@ -1,0 +1,55 @@
+# import colorgram
+#
+# rgb_colors = []
+# colors = colorgram.extract('image.jpg', 10)
+#
+# for color in colors:
+#     r = color.rgb.r
+#     g = color.rgb.g
+#     b = color.rgb.b
+#     new_color = (r, g, b)
+#     rgb_colors.append(new_color)
+# print(rgb_colors)
+import random
+
+# Manually removed white colours as its most likely the background from the image.
+color_list = [(202, 164, 110), (240, 245, 241), (236, 239, 243), (149, 75, 50), (222, 201, 136), (53, 93, 123),
+              (170, 154, 41), (138, 31, 20)]
+
+
+def random_color(color_list):
+    chosen_color = random.choice(color_list)
+    r = chosen_color[0]
+    g = chosen_color[1]
+    b = chosen_color[2]
+    final_color = (r, g, b)
+    return final_color
+
+
+import turtle
+from turtle import Turtle, Screen
+
+tim = Turtle()
+tim.hideturtle()
+tim.speed("fastest")
+turtle.colormode(255)
+
+#Size = 20, Gap = 50
+
+def move_across():
+    for _ in range (10):
+        tim.pendown()
+        tim.dot(20, random_color(color_list))
+        tim.penup()
+        tim.forward(50)
+
+y = -150
+for _ in range (10):
+    tim.penup()
+    tim.setpos(-200, y)
+    y += 50
+    move_across()
+
+#Needed so the screen doesn't instantly close.
+screen = Screen()
+screen.exitonclick()
